@@ -15,7 +15,7 @@ class products(models.Model):
     usable=models.BooleanField()
 
 class pickups(models.Model):
-    product=models.ManyToManyField(products)
+    product=models.ManyToManyField(products,related_name="product")
     lat=models.FloatField() # For lattitude
     long=models.FloatField() # For longitude
     picked_on=models.DateTimeField(default=None,blank=True,null=True)
