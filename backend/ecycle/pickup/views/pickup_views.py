@@ -18,5 +18,3 @@ class PickupView(APIView):
             serialized_data.save()
             return Response({"message":"Pickup request recorded sucessfully","type":"success"},status=status.HTTP_201_CREATED)
        
-
-    
