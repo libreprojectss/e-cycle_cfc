@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from pickup.serializers import *
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 class PickupView(APIView):
     def get(self,request,pickup_id=None):
@@ -14,6 +15,7 @@ class PickupView(APIView):
         return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data.data})
     
 class CreatePickupView(APIView):
+        permission_classes=[IsAuthenticated]
         def post(self,request):
             if not request.data["products"]:
                 return Response({"message":"Product field is required","type":"error"},400)
