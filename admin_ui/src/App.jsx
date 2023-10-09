@@ -1,11 +1,12 @@
 import * as React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Sidebar from "./components/Sidebar";
 import Picked from "./components/Picked";
 import Pickupreqeust from "./components/Pickuprequest";
 import Dashboard from "./components/Dashboard";
 function App() {
+
   return (
     <>
       <Box width={"full"}>
@@ -19,8 +20,8 @@ function App() {
           </GridItem>
           <GridItem colSpan={4}>
             <Routes>
-              <Route path="/home" element={<Dashboard />} />
-              <Route path="/pickupreaquest" element={<Pickupreqeust />} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/pickuprequest" element={<Pickupreqeust />} />
               <Route path="/picked" element={<Picked />} />
             </Routes>
           </GridItem>

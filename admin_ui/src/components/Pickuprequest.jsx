@@ -3,7 +3,7 @@ import React from "react"
 const Pickuprequest = () => {
 
     return(<div>
-        Picked
+        Pickuprequest
     </div>)
 }
 

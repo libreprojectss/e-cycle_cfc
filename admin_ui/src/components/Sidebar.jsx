@@ -1,5 +1,6 @@
 
 import React, { ReactNode } from 'react'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {
   IconButton,
   Box,
@@ -21,16 +22,16 @@ import {
 
 
 const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'PickupRequest', icon: FiTrendingUp },
-  { name: 'Picked', icon: FiCompass },
+  { name: 'Home', icon: FiHome, link: '/' },
+  { name: 'PickupRequest', icon: FiTrendingUp, link: '/pickuprequest' },
+  { name: 'Picked', icon: FiCompass, link: '/picked' },
 ]
 
 export default function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Box minH="100vh">
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} className='random' />
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -65,16 +66,19 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-         Admin
+          Admin
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
-    </Box>
+        <Link to={link.link}>
+          <NavItem key={link.name} icon={link.icon}>
+            {link.name}
+          </NavItem>
+        </Link>
+      ))
+      }
+    </Box >
   )
 }
 
@@ -134,7 +138,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-  
+
     </Flex>
   )
 }
