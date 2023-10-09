@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Picked from "./components/Picked";
 import Pickupreqeust from "./components/Pickuprequest";
 import Dashboard from "./components/Dashboard";
+import LeafletFunc from "./components/Map/Leafletcontainer";
 function App() {
 
   return (
@@ -20,7 +21,8 @@ function App() {
           </GridItem>
           <GridItem colSpan={4}>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<LeafletFunc />} />
+              {/* <Route path="/map" element={<Pickupreqeust />} /> */}
               <Route path="/pickuprequest" element={<Pickupreqeust />} />
               <Route path="/picked" element={<Picked />} />
             </Routes>
