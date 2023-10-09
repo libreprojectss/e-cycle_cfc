@@ -6,7 +6,7 @@ from rest_framework.response import Response
 class PickupView(APIView):
     def get(self,request,pickup_id=None):
         if pickup_id:
-            pickup_objects=pickups.objects.filter(user=pickup_id)
+            pickup_objects=pickups.objects.filter(product__user=pickup_id)
             serialized_data=PickupSerializer(pickup_objects)
         else:
             pickup_objects=pickups.objects.all()
@@ -14,7 +14,12 @@ class PickupView(APIView):
         return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data.data})
     
 class CreatePickupView(APIView):
-        def post(self,request,pickup_id=None):
+        def post(self,request):
+            if not request.data["products"]:
+                return Response({"message":"Product field is required","type":"error"},400)
+            serialized_data=ProductSerializer(data=request.data["products"],many=True)
+            if serialized_data.is_valid(raise_exception=True):
+                serialized_data.save()
             serialized_data=PickupSerializer(data=request.data)
             if serialized_data.is_valid(raise_exception=True):
                 serialized_data.save()

@@ -6,16 +6,7 @@ def product_image_upload_to(instance, filename):
     role=instance.role
     # Append the filename to the product id and return the complete path
     return f"{id_var}/product_image/{filename}"
-# Create your models here.
-class products(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    title=models.CharField(max_length=255)
-    image=models.ImageField(upload_to=product_image_upload_to,default=None,blank=True,null=True)
-    description=models.CharField(max_length=255)
-    usable=models.BooleanField()
-
 class pickups(models.Model):
-    product=models.ManyToManyField(products,related_name="product")
     lat=models.FloatField() # For lattitude
     long=models.FloatField() # For longitude
     picked_on=models.DateTimeField(default=None,blank=True,null=True)
@@ -25,6 +16,16 @@ class pickups(models.Model):
         if self.picked_on:
             return True
         return False
+
+class products(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    pickup=models.ForeignKey(pickups,on_delete=models.CASCADE, related_name="products",default=None,null=True)
+    title=models.CharField(max_length=255)
+    image=models.ImageField(upload_to=product_image_upload_to,default=None,blank=True,null=True)
+    description=models.CharField(max_length=255)
+    usable=models.BooleanField()
+
+
 
 
 class donate(models.Model):
