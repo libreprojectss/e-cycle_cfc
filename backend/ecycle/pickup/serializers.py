@@ -11,3 +11,6 @@ class PickupSerializer(serializers.Serializer):
     class Meta:
         model=pickups
         fields=['products','lat','long','picked_on','is_picked']
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+    
