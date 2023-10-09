@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import markerIcon from "../../assets/react.svg";
-import collecterIcon from "../../assets/collector.jpg";
+import collecterIcon from "../../assets/collector.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/layout";
@@ -28,10 +28,10 @@ function LeafletFunc() {
       });
   };
   const amenity = () => {
-    
-    axios.get("http://127.0.0.1:8000/pickups/amenity/all/")
+    axios
+      .get("http://127.0.0.1:8000/pickups/amenity/all/")
       .then((resp) => {
-    console.log('working babies')
+        setamen(resp.data);
       })
       .catch((err) => {
         console.log("Bye");
@@ -48,7 +48,7 @@ function LeafletFunc() {
 
   const customIconAmen = L.icon({
     iconUrl: collecterIcon,
-    iconSize: [50, 40],
+    iconSize: [20, 10],
   });
   return (
     <Box my={4}>
@@ -77,19 +77,15 @@ function LeafletFunc() {
           </Marker>
         ))}
         {amen?.length &&
-          amen.map((marker, index) =>
-            console.log(
-              "marker",
-              marker?.coordinates[0],
-              marker?.coordinates[1]
-            )
-            // <Marker
-            //   key={index}
-            //   position={[marker?.coordinates[1], marker?.coordinates[0]]}
-            //   icon={customIconAmen}
-            // >
-            //   <Popup>{marker?.name ? marker?.name : "No name"}</Popup>
-            // </Marker>
+          amen.map(
+            (marker, index) =>
+            <Marker
+              key={index}
+              position={[marker?.coordinates[1], marker?.coordinates[0]]}
+              icon={customIconAmen}
+            >
+              <Popup>{marker?.name ? marker?.name : "No name"}</Popup>
+            </Marker>
           )}
       </MapContainer>
     </Box>
