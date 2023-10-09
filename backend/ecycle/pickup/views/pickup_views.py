@@ -2,17 +2,20 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from pickup.serializers import *
 from rest_framework.response import Response
+from pickup.helpers.pickups_by_location import get_arranged_pickups_by_location
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 class PickupView(APIView):
     def get(self,request,pickup_id=None):
-        if pickup_id:
-            pickup_objects=pickups.objects.filter(product__user=pickup_id)
-            serialized_data=PickupSerializer(pickup_objects)
-        else:
-            pickup_objects=pickups.objects.all()
-            serialized_data=PickupSerializer(pickup_objects,many=True)
-        return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data.data})
+        # if pickup_id:
+        #     pickup_objects=pickups.objects.filter(product__user=pickup_id)
+        #     serialized_data=PickupSerializer(pickup_objects)
+        #     data=serialized_data.data
+        # else:
+            # pickup_objects=pickups.objects.all()
+            # serialized_data=PickupSerializer(pickup_objects,many=True)
+        data=get_arranged_pickups_by_location()
+        return Response({"message":"Data fetched sucessfully","type":"success","data":data})
     
 class CreatePickupView(APIView):
         permission_classes=[IsAuthenticated]
