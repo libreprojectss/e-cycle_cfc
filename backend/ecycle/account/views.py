@@ -2,6 +2,7 @@ from .serializers import SignupSerializer,LoginSerializer,AccountSerializer
 from rest_framework.views import APIView
 from account.renderers import UserRenderer
 from rest_framework.response import Response
+from .helpers import get_token_for_user
 from rest_framework import status
 #View for signup
 class UserCreateView(APIView):
@@ -10,7 +11,8 @@ class UserCreateView(APIView):
         serializeddata=SignupSerializer(data=request.data)
         if serializeddata.is_valid(raise_exception=True):
             data=serializeddata.save()
-            return Response({"success":"Account created sucessfully.Email has been sent to your mail box for validation."},status=status.HTTP_200_OK)
+            token=get_token_for_user(User.objects.get(email=data.email))
+            return Response({"success":"Account created sucessfully.","token":str(token)},status=status.HTTP_200_OK)
 
 
 #View for login
