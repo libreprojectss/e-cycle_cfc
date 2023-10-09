@@ -19,10 +19,10 @@ import { AiOutlineEye } from "react-icons/ai";
 const Picked = () => {
   return (
     <Box mt={8}>
-      <Card>
-        <CardBody as={Flex} alignItems={"center"}>
+      <Card mx={8}>
+        <CardBody as={Flex} alignItems={"center"} justifyContent={'space-between'}>
           <Flex alignItems={'center'}>
-            <Wrap>
+            <Wrap mx={4}>
               <WrapItem>
                 <Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
               </WrapItem>
@@ -31,10 +31,13 @@ const Picked = () => {
             <Text>Title</Text>
           </Flex>
           <Spacer />
-          <Stack direction="row">
-            <Badge colorScheme="blue">picked</Badge>
-            <AiOutlineEye />
-          </Stack>
+          <Flex  justifyContent={"center"} alignContent={'center'}>
+            <Box mx={4}>
+            <Badge colorScheme="blue" >picked</Badge>
+            </Box>
+          
+            <AiOutlineEye size={25}/>
+          </Flex>
         </CardBody>
       </Card>
     </Box>
