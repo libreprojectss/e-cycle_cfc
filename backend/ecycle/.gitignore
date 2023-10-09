@@ -1,4 +1,3 @@
 media/
 migrations/
 __pycache__/
-reset_database.py

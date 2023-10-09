@@ -13,7 +13,7 @@ class SignupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('password', 'email', 'phone_number', 'full_name', 'confirm_password','role')
+        fields = ('password', 'email', 'phone_number', 'name', 'confirm_password')
         extra_kwargs = {
             'password': {'write_only': True},
         }
@@ -57,11 +57,14 @@ class LoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("No any user is registered with this email")
         user=User.objects.get(email=data["email"])
         if user.check_password(data["password"]):
-            if user.is_email_verified:
-                token=get_tokens_for_user(user)
-                return {'token':token,'is_verified': True,"user":user}
-            else:
-                return {"token":"","is_verified":False}
+            
+            token=get_tokens_for_user(user)
+            return {'token':token,'is_verified': True,"user":user}
         else:
             raise serializers.ValidationError('Invalid credentials')
         return data
+    
+class AccountSerializer(serializers.Serializer):
+    class Meta:
+        model=User
+        fields="__all__"

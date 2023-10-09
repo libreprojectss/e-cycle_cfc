@@ -1,6 +1,8 @@
-from .serializers import SignupSerializer,LoginSerializer
+from .serializers import SignupSerializer,LoginSerializer,AccountSerializer
 from rest_framework.views import APIView
 from account.renderers import UserRenderer
+from rest_framework.response import Response
+from rest_framework import status
 #View for signup
 class UserCreateView(APIView):
     # renderer_classes=[UserRenderer] #Renderer class to render the response format
@@ -27,7 +29,7 @@ class LoginView(APIView):
                                   'user':user},
                                   status=status.HTTP_200_OK)
             else:
-                send_email_verification_token(request.data["email"])
+                
                 return Response({'error':'User is not verified'},status=status.HTTP_403_FORBIDDEN)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
