@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-qptn!hx4@k6@g8^%f(3i+u3b5r+jr(9vywl0p^56qz&_#al2lk
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+AUTH_USER_MODEL='account.User'  
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     ##installed apps
+    'phonenumber_field',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     ##defined apps
+    'account'
    
 ]
 

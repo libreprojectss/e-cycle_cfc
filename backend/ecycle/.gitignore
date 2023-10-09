@@ -1,3 +1,4 @@
 media/
 migrations/
-pycache/
+__pycache__/
+reset_database.py
