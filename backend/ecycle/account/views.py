@@ -4,6 +4,7 @@ from account.renderers import UserRenderer
 from rest_framework.response import Response
 from .helpers import get_tokens_for_user
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 #View for signup
 class UserCreateView(APIView):
     # renderer_classes=[UserRenderer] #Renderer class to render the response format
@@ -35,3 +36,13 @@ class LoginView(APIView):
                 return Response({'error':'User is not verified'},status=status.HTTP_403_FORBIDDEN)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GetUserById(APIView):
+    def get(self,request,id):
+        try:
+            user=User.objects.get(id=id)
+        except:
+            return Response({"message":"Provided id is invalid","type":"error"},400)
+        serialized_data=AccountSerializer(user)
+        return Response({"message":"Data fetched successfully","type":"success","data":serialized_data.data},200)
+        
