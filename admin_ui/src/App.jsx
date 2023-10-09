@@ -19,7 +19,7 @@ function App() {
           </GridItem>
           <GridItem colSpan={4}>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/home" element={<Dashboard />} />
               <Route path="/pickupreaquest" element={<Pickupreqeust />} />
               <Route path="/picked" element={<Picked />} />
             </Routes>
