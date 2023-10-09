@@ -20,8 +20,8 @@ export default function DetailModal() {
   return (
     <>
 
-        <AiOutlineEye size={25}  onClick={onOpen}/>
-      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
+        <AiOutlineEye size={25}  onClick={onOpen} style={{cursor:"pointer"}}/>
+      <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
@@ -30,11 +30,7 @@ export default function DetailModal() {
           Body goes here
           </ModalBody>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+       
         </ModalContent>
       </Modal>
     </>

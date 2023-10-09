@@ -1,10 +1,63 @@
-import React from "react"
+import React from "react";
+import DetailModal from "./modal/Modal";
+import {
+  Card,
+  Box,
+  Spacer,
+  CardBody,
+  Text,
+  Avatar,
+  Wrap,
+  WrapItem,
+  Stack,
+  Badge,
+  Flex,
+  Center,
+} from "@chakra-ui/react";
+import { BsFillTrashFill } from "react-icons/bs";
 
 const Pickuprequest = () => {
+  return (
+    <>
+      <Box mt={8}>
+        <Card mx={8}>
+          <CardBody
+            as={Flex}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Flex alignItems={"center"}>
+              <Wrap mx={4}>
+                <WrapItem>
+                  <Avatar
+                    name="Dan Abrahmov"
+                    src="https://bit.ly/dan-abramov"
+                  />
+                </WrapItem>
+              </Wrap>
+              <Spacer />
+              <Text>Title</Text>
+            </Flex>
+            <Spacer />
+            <Flex justifyContent={"center"} alignContent={"center"}>
+              <Box mx={4}>
+                <Badge colorScheme="blue">pending</Badge>
+              </Box>
+              <DetailModal />
+              <Box
+                as={Flex}
+                justifyContent={"center"}
+                alignItems={"center"}
+                mx={2}
+              >
+                <BsFillTrashFill size={20} color="red" style={{cursor:"pointer"}}/>
+              </Box>
+            </Flex>
+          </CardBody>
+        </Card>
+      </Box>
+    </>
+  );
+};
 
-    return(<div>
-        Pickuprequest
-    </div>)
-}
-
-export default Pickuprequest
+export default Pickuprequest;

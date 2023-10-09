@@ -36,7 +36,7 @@ const Picked = () => {
           <Spacer />
           <Flex justifyContent={"center"} alignContent={"center"}>
             <Box mx={4}>
-              <Badge colorScheme="blue">picked</Badge>
+              <Badge colorScheme="green">picked</Badge>
             </Box>
             <DetailModal />
           </Flex>
