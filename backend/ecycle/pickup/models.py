@@ -20,7 +20,6 @@ class products(models.Model):
     pickup=models.ForeignKey(pickups,on_delete=models.CASCADE, related_name="products",default=None,null=True)
     title=models.CharField(max_length=255)
     image=models.ImageField(upload_to=product_image_upload_to,default=None,blank=True,null=True)
-    image_64=models.TextField(default=None,blank=True,null=True)
     description=models.CharField(max_length=255)
     usable=models.BooleanField()
 

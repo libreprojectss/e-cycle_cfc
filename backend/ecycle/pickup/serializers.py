@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
         if image_data:
             padding = '=' * (4 - (len(image_data) % 4))
             image_data += padding
-              # Decode the base64 string and create a ContentFile
+            # Decode the base64 string and create a ContentFile
             decoded_image = ContentFile(base64.b64decode(image_data.encode()), name='uploaded_image.png')
 
             # Get the path to the media directory
@@ -24,11 +24,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
             # Create the media directory if it doesn't exist
             os.makedirs(media_path, exist_ok=True)
-
-            # Set the file path within the media directory
-            file_path = os.path.join(media_path, 'uploaded_image.png')
-
-            validated_data['image_64'] = file_path
             validated_data["image"]=decoded_image
 
         return super().create(validated_data)
