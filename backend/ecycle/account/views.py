@@ -14,7 +14,7 @@ class UserCreateView(APIView):
         if serializeddata.is_valid(raise_exception=True):
             data=serializeddata.save()
             token=get_tokens_for_user(User.objects.get(email=data.email))
-            return Response({"success":"Account created sucessfully.","token":str(token)},status=status.HTTP_200_OK)
+            return Response({"success":"Account created sucessfully.","token":token},status=status.HTTP_200_OK)
 
 
 #View for login
@@ -52,3 +52,4 @@ class NotificationViews(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request):
         notifications=Notifications.objects.filter(user=request.user)
+        serialized_data=NotificationSerializer()
