@@ -13,11 +13,11 @@ function LeafletFunc() {
 
   const validity = () => {
     axios
-      .get("http://192.168.1.114:8000/api/user/allproduct/")
+      .get("http://127.0.0.1:8000/pickups/all/")
       .then((resp) => {
         if (resp) {
-          console.log(resp);
-          setData(resp.data);
+          // console.log(resp.data.data);
+          setData(resp.data.data);
         } else {
           console.log("Verification Failed");
         }
@@ -38,7 +38,7 @@ function LeafletFunc() {
       });
   };
 
-  //   useEffect(() => validity(), []);
+    useEffect(() => validity(), []);
   useEffect(() => amenity(), []);
 
   const customIcon = L.icon({
@@ -67,15 +67,17 @@ function LeafletFunc() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {data.map((marker, index) => (
+       
+         {data?.map((marker, index) => (
           <Marker
             key={index}
-            position={[marker.lat, marker.lon]}
+            position={[marker.lat, marker.long]}
             icon={customIcon}
           >
             <Popup>{marker.productname}</Popup>
           </Marker>
         ))}
+       
         {amen?.length &&
           amen.map(
             (marker, index) =>

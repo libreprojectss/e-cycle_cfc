@@ -95,7 +95,8 @@ const {pathname} = useLocation();
       <Flex
       className={`${pathname === link ? 'bg-cyan-400 text-white' : ''}`}
         align="center"
-        p="4"
+        p="2"
+        my={2}
         mx="4"
         borderRadius="lg"
         role="group"
