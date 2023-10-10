@@ -7,7 +7,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model=products
         fields="__all__"
-        read_only_fields=["user"]
+        read_only_fields=["user","image"]
     
     def create(self, validated_data):
         # Extract the base64 content from the received data
