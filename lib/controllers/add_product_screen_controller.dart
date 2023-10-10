@@ -113,7 +113,7 @@ class AddProductScreenController extends GetxController {
           final imageFile = product.image!;
           final imageBytes = await imageFile.readAsBytes();
           final base64Image = base64Encode(imageBytes);
-          productData['image_64'] = base64Image;
+          productData['image'] = base64Image;
         }
 
         requestData.add(productData);

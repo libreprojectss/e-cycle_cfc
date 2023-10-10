@@ -21,7 +21,7 @@ class _SubmitProductsState extends State<SubmitProducts> {
   Timer? _debounce;
   void _onTextChanged(String value) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(seconds: 1), () {
+    _debounce = Timer(const Duration(milliseconds: 500), () {
       // Call your function here after a delay of 5 seconds.
       // FocusScope.of(context).unfocus();
       addProductScreenController.placeAutoComplete(context, value);
