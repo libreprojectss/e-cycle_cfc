@@ -39,4 +39,15 @@ class PickedViews(APIView):
         data=PickupSerializer(objects,many=True).data
         return Response({"message":"Data fetched sucessfully","type":"success","data":data})
     
+class UserPickups(APIView):
+    permission_classes=[IsAuthenticated]
     
+    def get(self,request):
+        products=products.objects.filter(user=request.user)
+        pickups_obj_list=list()
+        for i in pickups:
+            if i not in pickups_obj_list:
+                pickups_obj_list.append(i)
+        serialized_data=PickupSerializer(pickups_obj_list,many=True)
+        return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data.data})
+

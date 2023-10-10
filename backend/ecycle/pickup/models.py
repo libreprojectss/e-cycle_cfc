@@ -1,7 +1,6 @@
 from django.db import models
 from account.models import User
 def product_image_upload_to(instance, filename):
-    # Get the user's email from the related carrier
     id_var= instance.id
     # Append the filename to the product id and return the complete path
     return f"{id_var}/product_image/{filename}"
