@@ -32,4 +32,11 @@ class CreatePickupView(APIView):
             if serialized_data.is_valid(raise_exception=True):
                 serialized_data.save()
                 return Response({"message":"Pickup request recorded sucessfully","type":"success"},status=status.HTTP_201_CREATED)
-        
+
+class PickedViews(APIView):
+    def get(self,request):
+        objects=pickups.objects.exclude(picked_on=None)
+        data=PickupSerializer(objects,many=True).data
+        return Response({"message":"Data fetched sucessfully","type":"success","data":data})
+    
+    
