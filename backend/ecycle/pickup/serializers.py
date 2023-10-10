@@ -4,10 +4,11 @@ from django.core.files.base import ContentFile
 import base64,os
 from django.conf import settings
 class ProductSerializer(serializers.ModelSerializer):
+    image=serializers.CharField()
     class Meta:
         model=products
         fields="__all__"
-        read_only_fields=["user","image"]
+        read_only_fields=["user"]
     
     def create(self, validated_data):
         # Extract the base64 content from the received data
@@ -17,7 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
             padding = '=' * (4 - (len(image_data) % 4))
             image_data += padding
             # Decode the base64 string and create a ContentFile
-            decoded_image = ContentFile(base64.b64decode(image_data.encode()), name='uploaded_image.png')
+            decoded_image = ContentFile(base64.b64decode(image_data.encode()), name='some_filename.png')
 
             # Get the path to the media directory
             media_path = os.path.join(settings.MEDIA_ROOT, 'uploaded_images')
