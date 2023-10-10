@@ -71,7 +71,7 @@ export default function DetailModal({ data }) {
                       <Box key={index}>
                       
                           <img
-                            src={`http://192.168.1.30:8000${item.image}`}
+                            src={`${import.meta.env.VITE_BASE_URL}media/${item.image}`}
                             alt="image"
                             width={200}
                             height={200}
