@@ -6,6 +6,7 @@ import 'package:recyclo/constants/color_constants.dart';
 import 'package:recyclo/controllers/login_screen_controller.dart';
 import 'package:recyclo/routes/approutes.dart';
 import 'package:recyclo/utils/custom_button.dart';
+import 'package:recyclo/utils/dialog.dart';
 import 'package:recyclo/utils/input_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -138,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       final isvalid = _formKey1.currentState!.validate();
                       if (isvalid) {
                         FocusScope.of(context).unfocus();
-                        // LoadingDialog.show(context);}?
+                        LoadingDialog.show(context);
                         sendingBody = {
                           "email": email.text,
                           "password": password.text

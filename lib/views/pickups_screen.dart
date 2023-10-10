@@ -70,8 +70,7 @@ class _PickupScreenState extends State<PickupScreen> {
                             width: 20.w,
                           ),
                           Text(
-                            pickupScreenController.pickups[index]
-                                        ['description'] ==
+                            pickupScreenController.pickups[index]['usable'] ==
                                     true
                                 ? 'Usable'
                                 : 'Un usable',

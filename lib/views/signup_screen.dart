@@ -6,6 +6,7 @@ import 'package:recyclo/constants/color_constants.dart';
 import 'package:recyclo/controllers/signup_screen_contoller.dart';
 import 'package:recyclo/routes/approutes.dart';
 import 'package:recyclo/utils/custom_button.dart';
+import 'package:recyclo/utils/dialog.dart';
 import 'package:recyclo/utils/input_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -63,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10.h,
                 ),
                 InputField(
-                        onChanged: (value) {},
+                    onChanged: (value) {},
                     controller: name,
                     errorText: null,
                     hintText: 'Enter your name',
@@ -99,7 +100,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(      onChanged: (value) {},
+                InputField(
+                    onChanged: (value) {},
                     controller: email,
                     errorText: null,
                     hintText: 'Enter your email',
@@ -132,7 +134,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(      onChanged: (value) {},
+                InputField(
+                    onChanged: (value) {},
                     controller: phonenumber,
                     errorText: null,
                     hintText: 'Enter your phone number',
@@ -163,7 +166,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(      onChanged: (value) {},
+                InputField(
+                    onChanged: (value) {},
                     controller: password,
                     errorText: null,
                     hintText: 'Enter your password',
@@ -196,7 +200,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(      onChanged: (value) {},
+                InputField(
+                    onChanged: (value) {},
                     controller: confirmpassword,
                     errorText: null,
                     hintText: 'Confirm your password',
@@ -238,6 +243,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     final isvalid = _formKey2.currentState!.validate();
                     if (isvalid) {
                       FocusScope.of(context).unfocus();
+                      LoadingDialog.show(context);
                       // LoadingDialog.show(context);}?
                       sendingBody = {
                         "email": email.text,

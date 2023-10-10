@@ -21,38 +21,27 @@ class SignUpScreenController extends GetxController {
     try {
       String uri = APIConstants.baseURI + APIConstants.customerSignUp;
       var response = await http.post(Uri.parse(uri), body: sendingBody);
-      debugPrint(response.body);
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-
+        Get.back();
+        Get.offAllNamed(AppRoutes.mainscreen);
         await storage.write(
             key: 'refreshtoken', value: data['token']['refresh'].toString());
         await storage.write(
             key: 'accesstoken', value: data['token']['access'].toString());
-        Get.offAllNamed(AppRoutes.mainscreen);
-      } else if (response.statusCode == 400) {
-        Map data = jsonDecode(response.body);
-
-        if (data.containsKey('errors')) {
-          Get.snackbar(
-            'Error',
-            data['errors']['non_field_errors'][0],
-            snackPosition: SnackPosition.BOTTOM,
-            colorText: ColorConstants.kPlaneWhiteColor,
-            backgroundColor: ColorConstants.KErrorColor,
-          );
-        } else if (data.containsKey("email")) {
-          Get.snackbar(
-            'Error',
-            data['email'][0],
-            snackPosition: SnackPosition.BOTTOM,
-            colorText: ColorConstants.kPlaneWhiteColor,
-            backgroundColor: ColorConstants.KErrorColor,
-          );
-        }
+      } else {
+        Get.back();
+        Get.snackbar(
+          'Error',
+          'Something went wrong',
+          snackPosition: SnackPosition.BOTTOM,
+          colorText: ColorConstants.kPlaneWhiteColor,
+          backgroundColor: ColorConstants.KErrorColor,
+        );
       }
     } catch (e) {
+      Get.back();
       debugPrint(e.toString());
     }
   }

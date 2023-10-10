@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class PickupScreenController extends GetxController {
   final storage = const FlutterSecureStorage();
-  List pickups = [];
+  List<Map<String, dynamic>> pickups = []; // Change the type of pickups list
   void getPickupDetails() async {
     final accessToken = await storage.read(key: 'accesstoken');
     String uri = APIConstants.baseURI + APIConstants.customerPickupsView;
@@ -18,11 +17,16 @@ class PickupScreenController extends GetxController {
         'Authorization': 'Bearer $accessToken',
       },
     );
-    debugPrint(response.body, wrapWidth: 800);
+
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-      var productsData = jsonData['data'][0]['products'];
-      pickups = productsData;
+      var data = jsonData['data'];
+      for (var item in data) {
+        var productsData = item['products'];
+        for (var product in productsData) {
+          pickups.add(product);
+        }
+      }
 
       update();
     } else {

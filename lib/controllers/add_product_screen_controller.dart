@@ -105,7 +105,7 @@ class AddProductScreenController extends GetxController {
         final productData = {
           'title': product.name,
           'description': product.description,
-          'usable': 'true',
+          'usable': product.usable,
         };
 
         // Attach the image to the product data if it exists for this product
@@ -133,8 +133,7 @@ class AddProductScreenController extends GetxController {
         body: requestBody,
       );
 
-      final responseContent = jsonDecode(response.body);
-      debugPrint('Response Content: $responseContent');
+      // debugPrint('Response Content: $responseContent');
 
       if (response.statusCode == 201) {
         Get.snackbar('Success', 'Product added successfully',
