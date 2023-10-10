@@ -18,13 +18,10 @@ class ProductSerializer(serializers.ModelSerializer):
             padding = '=' * (4 - (len(image_data) % 4))
             image_data += padding
             # Decode the base64 string and create a ContentFile
-            decoded_image = ContentFile(base64.b64decode(image_data.encode()), name='some_filename.png')
+            print(validated_data)
+            decoded_image = ContentFile(base64.b64decode(image_data.encode()), name=f'${validated_data["pickup"].id}.png')
 
-            # Get the path to the media directory
-            media_path = os.path.join(settings.MEDIA_ROOT, 'uploaded_images')
-
-            # Create the media directory if it doesn't exist
-            os.makedirs(media_path, exist_ok=True)
+           
             validated_data["image"]=decoded_image
 
         return super().create(validated_data)

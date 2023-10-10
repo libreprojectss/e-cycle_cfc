@@ -17,6 +17,7 @@ class PickupView(APIView):
             # pickup_objects=pickups.objects.all()
             # serialized_data=PickupSerializer(pickup_objects,many=True)
         data=get_arranged_pickups_by_location()
+        print(data)
         return Response({"message":"Data fetched sucessfully","type":"success","data":data})
     
 class CreatePickupView(APIView):
@@ -44,10 +45,8 @@ class UserPickups(APIView):
     
     def get(self,request):
         product_list=products.objects.filter(user=request.user)
-        print(product_list)
         pickups_obj_list=list()
         for i in product_list:
-            print(i.pickup)
             if i.pickup not in pickups_obj_list:
                 pickups_obj_list.append(i.pickup)
         if len(pickups_obj_list)>0:
