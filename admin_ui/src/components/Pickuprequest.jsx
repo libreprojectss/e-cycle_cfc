@@ -35,7 +35,7 @@ const Pickuprequest = () => {
   return (
     <>
       <Box mt={8}>
-        {pickupRequest.map((item,index) => (
+        {pickupRequest.length>0 ? pickupRequest.map((item,index) => (
           <Card mx={8} key={index}>
             <CardBody
               as={Flex}
@@ -59,9 +59,9 @@ const Pickuprequest = () => {
                 <Box mx={4}>
                   <Badge colorScheme="blue">pending</Badge>
                 </Box>
-                {
+                {/* {
                   console.log('data',item)
-                }
+                } */}
                 <DetailModal data={item} />
                 <Box
                   as={Flex}
@@ -78,7 +78,7 @@ const Pickuprequest = () => {
               </Flex>
             </CardBody>
           </Card>
-        ))}
+        )):<div>No data</div>}
       </Box>
     </>
   );
