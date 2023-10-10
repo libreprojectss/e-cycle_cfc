@@ -50,9 +50,9 @@ class UserPickups(APIView):
             print(i.pickup)
             if i.pickup not in pickups_obj_list:
                 pickups_obj_list.append(i.pickup)
-        print(pickups_obj_list)
-        if pickups_obj_list:
+        if len(pickups_obj_list)>0:
             serialized_data=PickupSerializer(pickups_obj_list,many=True).data
-        serialized_data=[""]
+        else:
+            serialized_data=[""]
         return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data})
 
