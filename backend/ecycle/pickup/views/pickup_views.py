@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from pickup.serializers import *
 from rest_framework.response import Response
+from django.core.files.base import ContentFile
+import base64
 from pickup.helpers.pickups_by_location import get_arranged_pickups_by_location
 from rest_framework.permissions import IsAuthenticated
 # Create your views here.
@@ -21,10 +23,11 @@ class CreatePickupView(APIView):
         permission_classes=[IsAuthenticated]
         def post(self,request):
             if not request.data.get("products",""):
-                return Response({"message":"Product field is required","type":"error"},400)
+                return Response({"message":"Products field is required","type":"error"},400)
             serialized_data=ProductSerializer(data=request.data["products"],many=True)
+            
             if serialized_data.is_valid(raise_exception=True):
-                serialized_data.save()
+                serialized_data.save(user=request.user)
             serialized_data=PickupSerializer(data=request.data)
             if serialized_data.is_valid(raise_exception=True):
                 serialized_data.save()
