@@ -68,184 +68,224 @@ class _AddProductState extends State<AddProduct> {
         title: const Text('Add Product'),
       ),
       resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
-        child: Form(
-          key: _formKey3,
-          child: Column(
-            children: [
-              // SizedBox(
-              //   height: 40.h,
-              // ),
-              Row(
-                children: [
-                  Text('Product Name',
-                      style: Theme.of(context).textTheme.titleMedium),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              InputField(
-                  onChanged: (value) {},
-                  controller: addProductScreenController.productname,
-                  errorText: null,
-                  hintText: 'Enter the product name',
-                  keywordType: TextInputType.name,
-                  validation: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Required ';
-                    } else {
-                      return null;
-                    }
-                  },
-                  obscureText: false,
-                  isPrefix: false,
-                  readonly: false),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                children: [
-                  Text('Description',
-                      style: Theme.of(context).textTheme.titleMedium),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              InputField(
-                  onChanged: (value) {},
-                  controller: addProductScreenController.productdescription,
-                  errorText: null,
-                  hintText: 'Enter the product description',
-                  keywordType: TextInputType.name,
-                  validation: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Required ';
-                    } else {
-                      return null;
-                    }
-                  },
-                  obscureText: false,
-                  isPrefix: false,
-                  readonly: false),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                children: [
-                  Text('Photo', style: Theme.of(context).textTheme.titleMedium),
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) => bottomSheet(getImage),
-                      );
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
+          child: Form(
+            key: _formKey3,
+            child: Column(
+              children: [
+                // SizedBox(
+                //   height: 40.h,
+                // ),
+                Row(
+                  children: [
+                    Text('Product Name',
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                InputField(
+                    onChanged: (value) {},
+                    controller: addProductScreenController.productname,
+                    errorText: null,
+                    hintText: 'Enter the product name',
+                    keywordType: TextInputType.name,
+                    validation: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Required ';
+                      } else {
+                        return null;
+                      }
                     },
-                    child: Container(
-                      width: 200.w,
-                      height: 150.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                              width: _image == null ? 0.5 : 0,
-                              color: ColorConstants.kPrimaryColor)),
-                      child: _image == null
-                          ? Center(
-                              child: TextButton.icon(
-                                onPressed: () {
-                                  showModalBottomSheet(
-                                    context: context,
-                                    builder: (context) => bottomSheet(getImage),
-                                  );
-                                },
-                                label: const Text(
-                                  'Add photo',
+                    obscureText: false,
+                    isPrefix: false,
+                    readonly: false),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  children: [
+                    Text('Description',
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                InputField(
+                    onChanged: (value) {},
+                    controller: addProductScreenController.productdescription,
+                    errorText: null,
+                    hintText: 'Enter the product description',
+                    keywordType: TextInputType.name,
+                    validation: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Required ';
+                      } else {
+                        return null;
+                      }
+                    },
+                    obscureText: false,
+                    isPrefix: false,
+                    readonly: false),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  children: [
+                    Text('Photo',
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => bottomSheet(getImage),
+                        );
+                      },
+                      child: Container(
+                        width: 200.w,
+                        height: 150.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                                width: _image == null ? 0.5 : 0,
+                                color: ColorConstants.kPrimaryColor)),
+                        child: _image == null
+                            ? Center(
+                                child: TextButton.icon(
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) =>
+                                          bottomSheet(getImage),
+                                    );
+                                  },
+                                  label: const Text(
+                                    'Add photo',
+                                  ),
+                                  icon: const Icon(Icons.add_a_photo_outlined),
                                 ),
-                                icon: const Icon(Icons.add_a_photo_outlined),
+                              )
+                            : ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.file(
+                                  _image!,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            )
-                          : ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.file(
-                                _image!,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                      ),
                     ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    _image != null
+                        ? ElevatedButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                            ),
+                            onPressed: () {
+                              _image = null;
+                              setState(() {});
+                            },
+                            child: Text(
+                              'Remove',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: ColorConstants.kPrimaryColor),
+                            ))
+                        : const SizedBox(),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Obx(
+                  () => Row(
+                    children: [
+                      Checkbox(
+                          activeColor: ColorConstants.kPlaneWhiteColor,
+                          checkColor: ColorConstants.kPrimaryColor,
+                          side: const BorderSide(
+                              color: ColorConstants.kPrimaryColor),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                          value: addProductScreenController.isUsable.value,
+                          onChanged: (value) {
+                            addProductScreenController.isUsable.value =
+                                !addProductScreenController.isUsable.value;
+                          }),
+                      Text(
+                        addProductScreenController.isUsable.value
+                            ? 'Useable'
+                            : 'Un useable',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(color: ColorConstants.KtextColor),
+                      )
+                    ],
                   ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                  _image != null
-                      ? ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
-                          ),
-                          onPressed: () {
-                            _image = null;
-                            setState(() {});
-                          },
-                          child: Text(
-                            'Remove',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(color: ColorConstants.kPrimaryColor),
-                          ))
-                      : const SizedBox(),
-                ],
-              ),
-              SizedBox(
-                height: 150.h,
-              ),
-              CustomButton(
-                  text: 'Continue',
-                  onClick: () {
-                    final isvalid = _formKey3.currentState!.validate();
-                    if (isvalid && _image != null) {
-                      FocusScope.of(context).unfocus();
-                      final productName =
-                          addProductScreenController.productname.text;
-                      final productDescription =
-                          addProductScreenController.productdescription.text;
-                      final productImage = _image;
+                ),
+                SizedBox(
+                  height: 130.h,
+                ),
+                CustomButton(
+                    text: 'Continue',
+                    onClick: () {
+                      final isvalid = _formKey3.currentState!.validate();
+                      if (isvalid && _image != null) {
+                        FocusScope.of(context).unfocus();
+                        final productName =
+                            addProductScreenController.productname.text;
+                        final productDescription =
+                            addProductScreenController.productdescription.text;
+                        final usable =
+                            addProductScreenController.isUsable.value;
+                        final productImage = _image;
 
-                      final newProduct = Product(
-                        name: productName,
-                        description: productDescription,
-                        image: productImage,
-                      );
-                      addProductScreenController.addProduct(newProduct);
+                        final newProduct = Product(
+                          name: productName,
+                          description: productDescription,
+                          usable: usable,
+                          image: productImage,
+                        );
+                        addProductScreenController.addProduct(newProduct);
 
-                      Get.toNamed(AppRoutes.verifyproduct);
-                      addProductScreenController.productname.clear();
-                      addProductScreenController.productdescription.clear();
-                      _image = null;
-                    } else if (isvalid && _image == null) {
-                      Get.snackbar(
-                        'Error',
-                        'Please add the image',
-                        snackPosition: SnackPosition.BOTTOM,
-                        colorText: ColorConstants.kPlaneWhiteColor,
-                        backgroundColor: ColorConstants.KErrorColor,
-                      );
-                    }
-                  })
-            ],
+                        Get.toNamed(AppRoutes.verifyproduct);
+                        addProductScreenController.productname.clear();
+                        addProductScreenController.productdescription.clear();
+                        addProductScreenController.isUsable.value = true;
+                        _image = null;
+                      } else if (isvalid && _image == null) {
+                        Get.snackbar(
+                          'Error',
+                          'Please add the image',
+                          snackPosition: SnackPosition.BOTTOM,
+                          colorText: ColorConstants.kPlaneWhiteColor,
+                          backgroundColor: ColorConstants.KErrorColor,
+                        );
+                      }
+                    })
+              ],
+            ),
           ),
         ),
       ),

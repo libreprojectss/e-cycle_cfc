@@ -36,23 +36,50 @@ class _VerifyProductScreenState extends State<VerifyProductScreen> {
                     margin:
                         EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                     child: ListTile(
-                        title: Text(
-                          product.name,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        subtitle: Text(
-                          product.description,
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall!
-                              .copyWith(color: ColorConstants.KtextColor),
-                        ),
-                        leading: Image.file(
-                          product.image!,
-                          width: 120.w, // Adjust the width as needed
-                          height: 150.h, // Adjust the height as needed
-                          fit: BoxFit.cover,
-                        )),
+                      title: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.file(
+                            product.image!,
+                            width: 80.w,
+                            height: 80.h,
+                            fit: BoxFit.contain,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(color: ColorConstants.KtextColor),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Text(
+                                product.description,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: ColorConstants.KtextColor),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Text(
+                                product.usable == true ? 'Usable' : 'Unusable',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .copyWith(color: ColorConstants.KtextColor),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),

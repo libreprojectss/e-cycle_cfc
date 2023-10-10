@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:recyclo/config/app_config.dart';
 import 'package:recyclo/routes/approutes.dart';
 import 'package:recyclo/theme/themes.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(const MyApp());
 }
 
