@@ -48,6 +48,8 @@ class UserPickups(APIView):
         for i in product_list:
             if i.pickup not in pickups_obj_list:
                 pickups_obj_list.append(i.pickup)
-        serialized_data=PickupSerializer(pickups_obj_list,many=True)
+        if pickup_obj_list:
+            serialized_data=PickupSerializer(pickups_obj_list,many=True)
+        serialized_data=[""]
         return Response({"message":"Data fetched sucessfully","type":"success","data":serialized_data.data})
 
