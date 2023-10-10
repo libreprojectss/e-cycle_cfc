@@ -101,7 +101,7 @@ DATABASES = {
         "PORT": 5432,
         "NAME": "cfc_db",
         "USER": "postgres",
-        "PASSWORD": "",  # Add your actual password here if applicable
+        "PASSWORD": "12345",  # Add your actual password here if applicable
     }
 }
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

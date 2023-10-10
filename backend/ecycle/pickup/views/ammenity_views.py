@@ -14,10 +14,7 @@ class GetAmenity(APIView):
         url = res['result']['download_url']
         response = urllib.request.urlopen(url)
 
-        # Open the zip file from the response data
         with zipfile.ZipFile(io.BytesIO(response.read()), 'r') as zip_ref:
-            # Print the contents of the zip file
-            print(zip_ref.namelist())
             with zip_ref.open('Pokhara_buildings.geojson') as file:
                 my_export_geojson=json.loads(file.read())
             json_data=my_export_geojson["features"]
