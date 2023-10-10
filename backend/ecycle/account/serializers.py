@@ -1,4 +1,4 @@
-from .models import User
+from .models import User,Notifications
 from django.contrib.auth import authenticate
 from rest_framework import serializers,status
 from phonenumber_field.phonenumber import to_python
@@ -68,3 +68,9 @@ class AccountSerializer(serializers.Serializer):
     class Meta:
         model=User
         fields="__all__"
+
+class NotificationSerializer(serializers.Serializer):
+    class Meta:
+        model=Notifications
+        fields="__all__"
+        read_only_fields=["user"]

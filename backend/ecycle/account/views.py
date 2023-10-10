@@ -47,3 +47,8 @@ class GetUserById(APIView):
         serialized_data=AccountSerializer(user)
         return Response({"message":"Data fetched successfully","type":"success","data":serialized_data.data},200)
         
+
+class NotificationViews(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        notifications=Notifications.objects.filter(user=request.user)

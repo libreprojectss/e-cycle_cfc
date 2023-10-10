@@ -9,6 +9,4 @@ urlpatterns = [
     path('pickup/<str:pickup_id>/', PickupView.as_view()),
     path('amenity/all/',GetAmenity.as_view()),
     path('user/',UserPickups.as_view())
-
-
 ]

@@ -55,3 +55,6 @@ class Customer(User):
     def __str__(self):
         return f"Customer: {self.email}"
 
+class Notifications(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    message=models.CharField( max_length=50)
