@@ -26,13 +26,13 @@ class _MainScreenState extends State<MainScreen> {
             },
             destinations: const <NavigationDestination>[
               NavigationDestination(
-                selectedIcon: Icon(Icons.person),
-                icon: Icon(Icons.person_outline),
+                selectedIcon: Icon(Icons.dashboard_customize_outlined),
+                icon: Icon(Icons.dashboard),
                 label: 'Home',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.map),
-                icon: Icon(Icons.my_location_outlined),
+                selectedIcon: Icon(Icons.my_location_outlined),
+                icon: Icon(Icons.location_on_outlined),
                 label: 'Maps',
               ),
               NavigationDestination(

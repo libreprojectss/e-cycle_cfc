@@ -39,7 +39,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 100.h,
+                  height: 40.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Create an account',
+                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color: ColorConstants.KtextColor,
+                            fontSize: 26.fontSize)),
+                  ],
+                ),
+                SizedBox(
+                  height: 40.h,
                 ),
                 Row(
                   children: [
@@ -51,6 +63,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 10.h,
                 ),
                 InputField(
+                        onChanged: (value) {},
                     controller: name,
                     errorText: null,
                     hintText: 'Enter your name',
@@ -86,7 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(
+                InputField(      onChanged: (value) {},
                     controller: email,
                     errorText: null,
                     hintText: 'Enter your email',
@@ -119,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(
+                InputField(      onChanged: (value) {},
                     controller: phonenumber,
                     errorText: null,
                     hintText: 'Enter your phone number',
@@ -150,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(
+                InputField(      onChanged: (value) {},
                     controller: password,
                     errorText: null,
                     hintText: 'Enter your password',
@@ -183,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 10.h,
                 ),
-                InputField(
+                InputField(      onChanged: (value) {},
                     controller: confirmpassword,
                     errorText: null,
                     hintText: 'Confirm your password',

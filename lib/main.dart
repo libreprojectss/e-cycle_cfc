@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Recyclo',
           theme: Themes.light(context),
-          initialRoute: AppRoutes.mainscreen,
+          initialRoute: AppRoutes.splash,
           getPages: AppRoutes.routes,
         );
       });

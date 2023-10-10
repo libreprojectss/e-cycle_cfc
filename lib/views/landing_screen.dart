@@ -25,6 +25,13 @@ class _LandingScreenState extends State<LandingScreen> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    landingScreenController.googleMapController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<LandingScreenController>(builder: (context) {
       return Scaffold(

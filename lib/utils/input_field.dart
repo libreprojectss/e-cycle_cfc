@@ -14,11 +14,13 @@ class InputField extends StatelessWidget {
     this.suffix,
     this.prefixIcon,
     required this.readonly,
+    required this.onChanged,
   }) : super(key: key);
 
   final String? errorText;
   final String? hintText;
   final Function(String?) validation;
+  final Function(String?) onChanged; // Make onChanged optional
   final TextEditingController? controller;
   final TextInputType keywordType;
   final bool obscureText;
@@ -33,6 +35,7 @@ class InputField extends StatelessWidget {
     double deviceWidth = MediaQuery.of(context).size.width;
     // Set initial value if provided
     return TextFormField(
+      onChanged: (value) => onChanged(value),
       readOnly: readonly,
       controller: controller,
       autovalidateMode: AutovalidateMode.onUserInteraction,

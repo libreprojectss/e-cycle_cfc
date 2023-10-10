@@ -38,6 +38,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 100.h,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Login to your account',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+                                  color: ColorConstants.KtextColor,
+                                  fontSize: 26.fontSize)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 50.h,
+                  ),
+                  Row(
                     children: [
                       Text('Email',
                           style: Theme.of(context).textTheme.titleMedium),
@@ -47,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 10.h,
                   ),
                   InputField(
+                      onChanged: (value) {},
                       controller: email,
                       errorText: null,
                       hintText: 'Enter your email',
@@ -80,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 10.h,
                   ),
                   InputField(
+                      onChanged: (value) {},
                       controller: password,
                       errorText: null,
                       hintText: 'Enter your password',
