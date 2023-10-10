@@ -22,7 +22,7 @@ const Pickuprequest = () => {
   const [pickupRequest, setPickupRequest] = useState([]);
   const getPickup = () => {
     axios
-      .get("http://127.0.0.1:8000/pickups/all/")
+      .get(`${import.meta.env.VITE_BASE_URL}/pickups/all/`)
       .then((resp) => {
         console.log('response',resp)
         setPickupRequest(resp.data.data);
@@ -36,7 +36,7 @@ const Pickuprequest = () => {
     <>
       <Box mt={8}>
         {pickupRequest.length>0 ? pickupRequest.map((item,index) => (
-          <Card mx={8} key={index}>
+          <Card mx={8} key={index} my={2}>
             <CardBody
               as={Flex}
               alignItems={"center"}

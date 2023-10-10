@@ -20,7 +20,7 @@ const Picked = () => {
   const [picked, setPicked] = useState([]);
   const getPickup = () => {
     axios
-      .get("http://127.0.0.1:8000/pickups/completed/")
+      .get(`${import.meta.env.VITE_BASE_URL}/pickups/completed/`)
       .then((resp) => {
         console.log("response", resp);
         setPicked(resp.data.data);
@@ -35,7 +35,7 @@ const Picked = () => {
    
       {picked?.length > 0 ? (
         picked.map((item, index) => (
-          <Card mx={8} key={index}>
+          <Card mx={8} key={index} my={2}>
             <CardBody
               as={Flex}
               alignItems={"center"}
