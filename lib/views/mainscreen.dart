@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:recyclo/controllers/mainscreen_controller.dart';
+import 'package:unicons/unicons.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -26,17 +27,17 @@ class _MainScreenState extends State<MainScreen> {
             },
             destinations: const <NavigationDestination>[
               NavigationDestination(
-                selectedIcon: Icon(Icons.dashboard_customize_outlined),
-                icon: Icon(Icons.dashboard),
+                selectedIcon: Icon(UniconsLine.home),
+                icon: Icon(UniconsLine.home_alt),
                 label: 'Home',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.my_location_outlined),
-                icon: Icon(Icons.location_on_outlined),
+                selectedIcon: Icon(UniconsLine.map_marker_shield),
+                icon: Icon(UniconsLine.map_marker_shield),
                 label: 'Maps',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.history_outlined),
+                selectedIcon: Icon(UniconsLine.history),
                 icon: Icon(Icons.history_outlined),
                 label: 'Pickups',
               ),

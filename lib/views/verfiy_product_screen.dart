@@ -34,16 +34,23 @@ class _VerifyProductScreenState extends State<VerifyProductScreen> {
 
                   return Card(
                     margin:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                     child: ListTile(
                       title: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.file(
-                            product.image!,
-                            width: 80.w,
-                            height: 80.h,
-                            fit: BoxFit.contain,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.file(
+                              product.image!,
+                              width: 80.w,
+                              height: 100.h,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
