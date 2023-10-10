@@ -21,13 +21,28 @@ class PickupScreenController extends GetxController {
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
       var data = jsonData['data'];
+      // Clear the pickups list before adding new items
+      pickups.clear();
+
       for (var item in data) {
         var productsData = item['products'];
         for (var product in productsData) {
-          pickups.add(product);
+          // Create a new map for each product and copy its values
+          var newProduct = {
+            'id': product['id'],
+            'image': product['image'],
+            'title': product['title'],
+            'description': product['description'],
+            'usable': product['usable'],
+            'user': product['user'],
+            'pickup': product['pickup'],
+          };
+          pickups.add(newProduct);
         }
       }
 
+      // You can print the pickups list to check its contents
+      print(pickups);
       update();
     } else {
       // Handle the case where the response status code is not 200
