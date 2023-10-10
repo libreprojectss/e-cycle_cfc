@@ -20,7 +20,7 @@ class PickupView(APIView):
 class CreatePickupView(APIView):
         permission_classes=[IsAuthenticated]
         def post(self,request):
-            if not request.data["products"]:
+            if not request.data.get("products",""):
                 return Response({"message":"Product field is required","type":"error"},400)
             serialized_data=ProductSerializer(data=request.data["products"],many=True)
             if serialized_data.is_valid(raise_exception=True):

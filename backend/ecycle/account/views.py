@@ -2,6 +2,7 @@ from .serializers import SignupSerializer,LoginSerializer,AccountSerializer
 from rest_framework.views import APIView
 from account.renderers import UserRenderer
 from rest_framework.response import Response
+from account.models import User
 from .helpers import get_tokens_for_user
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
