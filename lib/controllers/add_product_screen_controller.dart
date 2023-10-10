@@ -105,7 +105,7 @@ class AddProductScreenController extends GetxController {
         final productData = {
           'title': product.name,
           'description': product.description,
-          'usable': product.usable,
+          'usable': 'false'
         };
 
         // Attach the image to the product data if it exists for this product

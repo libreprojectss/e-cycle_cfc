@@ -214,36 +214,7 @@ class _AddProductState extends State<AddProduct> {
                         : const SizedBox(),
                   ],
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
-                Obx(
-                  () => Row(
-                    children: [
-                      Checkbox(
-                          activeColor: ColorConstants.kPlaneWhiteColor,
-                          checkColor: ColorConstants.kPrimaryColor,
-                          side: const BorderSide(
-                              color: ColorConstants.kPrimaryColor),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          value: addProductScreenController.isUsable.value,
-                          onChanged: (value) {
-                            addProductScreenController.isUsable.value =
-                                !addProductScreenController.isUsable.value;
-                          }),
-                      Text(
-                        addProductScreenController.isUsable.value
-                            ? 'Useable'
-                            : 'Un useable',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(color: ColorConstants.KtextColor),
-                      )
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: 130.h,
                 ),

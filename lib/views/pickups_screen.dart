@@ -44,7 +44,7 @@ class _PickupScreenState extends State<PickupScreen> {
                 margin: EdgeInsets.symmetric(horizontal: 20..w, vertical: 10.h),
                 child: ListTile(
                   title: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Stack(
                         alignment: Alignment.center,
@@ -109,27 +109,6 @@ class _PickupScreenState extends State<PickupScreen> {
                           SizedBox(
                             height: 20.h,
                           ),
-                          TextButton.icon(
-                              onPressed: () {},
-                              icon: pickupScreenController.pickups[index]
-                                          ['usable'] ==
-                                      true
-                                  ? const Icon(Icons.check_box_rounded)
-                                  : const Icon(
-                                      Icons.indeterminate_check_box_rounded),
-                              label: Text(
-                                pickupScreenController.pickups[index]
-                                            ['usable'] ==
-                                        true
-                                    ? 'Usable'
-                                    : 'Un usable',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                        color: ColorConstants.kPrimaryColor,
-                                        fontSize: 14.fontSize),
-                              ))
                         ],
                       ),
                     ],
