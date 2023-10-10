@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:recyclo/config/ext.dart';
 import 'package:recyclo/constants/color_constants.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final storage = const FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +25,42 @@ class _HomeScreenState extends State<HomeScreen> {
               .titleLarge!
               .copyWith(color: ColorConstants.KtextColor),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Text('Are you sure to logout ?'),
+                      content: const SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            Text('Your will be logged out from the app.'),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('CANCEL'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('YES'),
+                          onPressed: () async {
+                            await storage.deleteAll();
+                            Get.offAllNamed(AppRoutes.loginscreen);
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              icon: const Icon(Icons.logout_rounded))
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -40,28 +78,28 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               const HomeCard(
-                image: 'assets/Ewaste.jpg',
+                image: 'assets/ewaste_1.jpg',
                 headertext: 'Recyclo',
                 middleheader: 'Effortless E-Waste Recycling',
                 lowerheader: 'Your Electronics, Our Commitment',
               ),
               SizedBox(height: 20.h),
               const HomeCard(
-                image: 'assets/board.jpg',
+                image: 'assets/ewaste_2.jpg',
                 headertext: 'Recyclo',
                 middleheader: 'Simplify. Collect. Renew',
                 lowerheader: 'E-Waste Recycling Made Easy',
               ),
               SizedBox(height: 20.h),
               const HomeCard(
-                image: 'assets/ewaste_collector.jpg',
+                image: 'assets/ewaste_3.jpg',
                 headertext: 'Recyclo',
                 middleheader: 'Transforming E-Waste Responsibly',
                 lowerheader: 'Your Convenience, Our Priority',
               ),
               SizedBox(height: 20.h),
               const HomeCard(
-                image: 'assets/ewaste_dump.png',
+                image: 'assets/ewaste_4.png',
                 headertext: 'Recyclo',
                 middleheader: 'Streamline Recycling Efforts',
                 lowerheader: 'E-Waste Management Simplified',
