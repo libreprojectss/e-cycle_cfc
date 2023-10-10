@@ -24,13 +24,14 @@ class CreatePickupView(APIView):
         def post(self,request):
             if not request.data.get("products",""):
                 return Response({"message":"Products field is required","type":"error"},400)
-            serialized_data=ProductSerializer(data=request.data["products"],many=True)
-            
-            if serialized_data.is_valid(raise_exception=True):
-                serialized_data.save(user=request.user)
             serialized_data=PickupSerializer(data=request.data)
+
             if serialized_data.is_valid(raise_exception=True):
-                serialized_data.save()
+                pickup=serialized_data.save()
+            serialized_data=ProductSerializer(data=request.data["products"],many=True)
+            if serialized_data.is_valid(raise_exception=True):
+                serialized_data.save(user=request.user,pickup=pickup)
+            
                 return Response({"message":"Pickup request recorded sucessfully","type":"success"},status=status.HTTP_201_CREATED)
 
 class PickedViews(APIView):
@@ -44,10 +45,13 @@ class UserPickups(APIView):
     
     def get(self,request):
         product_list=products.objects.filter(user=request.user)
+        print(product_list)
         pickups_obj_list=list()
         for i in product_list:
+            print(i.pickup)
             if i.pickup not in pickups_obj_list:
                 pickups_obj_list.append(i.pickup)
+        print(pickups_obj_list)
         if pickups_obj_list:
             serialized_data=PickupSerializer(pickups_obj_list,many=True).data
         serialized_data=[""]
