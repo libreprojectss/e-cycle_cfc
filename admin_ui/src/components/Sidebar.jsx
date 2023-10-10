@@ -1,6 +1,6 @@
 
 import React, { ReactNode } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import {
   IconButton,
   Box,
@@ -72,7 +72,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
       {LinkItems.map((link) => (
         <Link to={link.link}>
-          <NavItem key={link.name} icon={link.icon}>
+          <NavItem key={link.name} icon={link.icon} link={link.link}>
             {link.name}
           </NavItem>
         </Link>
@@ -83,7 +83,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
 }
 
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children, link, ...rest }) => {
+const {pathname} = useLocation();
+// console.log('pathname',pathname)
   return (
     <Box
       as="a"
@@ -91,6 +93,7 @@ const NavItem = ({ icon, children, ...rest }) => {
       style={{ textDecoration: 'none' }}
       _focus={{ boxShadow: 'none' }}>
       <Flex
+      className={`${pathname === link ? 'bg-cyan-400 text-white' : ''}`}
         align="center"
         p="4"
         mx="4"

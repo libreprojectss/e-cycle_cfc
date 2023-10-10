@@ -1,8 +1,8 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import markerIcon from "../../assets/react.svg";
-import collecterIcon from "../../assets/collector.png";
+import markerIcon from '../../assets/marker.png'
+import collecterIcon from "../../assets/collector.webp";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/layout";
@@ -48,7 +48,7 @@ function LeafletFunc() {
 
   const customIconAmen = L.icon({
     iconUrl: collecterIcon,
-    iconSize: [20, 10],
+    iconSize: [30, 30],
   });
   return (
     <Box my={4}>
@@ -57,7 +57,7 @@ function LeafletFunc() {
         zoom={13}
         scrollWheelZoom={true}
         style={{
-          height: "90vh",
+          height: "95vh",
           width: "75vw",
           border: "1px solid #ccc",
           borderRadius: "4px",

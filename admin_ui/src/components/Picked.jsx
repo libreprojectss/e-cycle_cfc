@@ -38,7 +38,7 @@ const Picked = () => {
             <Box mx={4}>
               <Badge colorScheme="green">picked</Badge>
             </Box>
-            <DetailModal />
+            {/* <DetailModal /> */}
           </Flex>
         </CardBody>
       </Card>
