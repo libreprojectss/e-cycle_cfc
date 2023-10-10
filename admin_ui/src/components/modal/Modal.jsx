@@ -38,7 +38,12 @@ export default function DetailModal({ data }) {
         <ModalContent>
           <ModalHeader>Product Details</ModalHeader>
           <ModalCloseButton />
-          <ModalBody as={Flex} justifyContent={'center'} flexDirection={"column"} placeItems={'center'}>
+          <ModalBody
+            as={Flex}
+            justifyContent={"center"}
+            flexDirection={"column"}
+            placeItems={"center"}
+          >
             <Box padding={4}>
               <MapContainer
                 center={[27.7172, 85.324]}
@@ -55,23 +60,30 @@ export default function DetailModal({ data }) {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                {
-                console.log(data)
-                }
-                <Marker position={[data?.lat, data?.long]} icon={customIcon} style={{height:"20px"}}>
-                  <Popup>Name</Popup>
+                {console.log(data)}
+                <Marker
+                  position={[data?.lat, data?.long]}
+                  icon={customIcon}
+                  style={{ height: "20px" }}
+                >
+                  <Popup>
+                    {data.products.map((item, index) => (
+                      <Box key={index}>
+                      
+                          <img
+                            src={`${import.meta.env.VITE_BASE_URL}media/${item.image}`}
+                            alt="image"
+                            width={200}
+                            height={200}
+                          />
+                        <Text fontSize="lg">{item.title}</Text>
+                        <p>{item.description}</p>
+                      </Box>
+                    ))}
+                  </Popup>
                 </Marker>
               </MapContainer>
             </Box>
-            {data.products.map((item, index) => (
-              <Box key={index}>
-                <Text>{item.title}</Text>
-                <Box>
-                  {/* <img src={`http://127.0.0.1${item.image}`} alt="image" /> */}
-                </Box>
-                <Text>{item.description}</Text>
-              </Box>
-            ))}
           </ModalBody>
         </ModalContent>
       </Modal>

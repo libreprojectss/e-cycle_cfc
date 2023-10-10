@@ -8,12 +8,13 @@ import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/layout";
 
 function LeafletFunc() {
+
   const [data, setData] = useState([]);
   const [amen, setamen] = useState();
 
   const validity = () => {
     axios
-      .get("http://127.0.0.1:8000/pickups/all/")
+      .get(`${import.meta.env.VITE_BASE_URL}/pickups/all/`)
       .then((resp) => {
         if (resp) {
           // console.log(resp.data.data);
@@ -29,12 +30,13 @@ function LeafletFunc() {
   };
   const amenity = () => {
     axios
-      .get("http://127.0.0.1:8000/pickups/amenity/all/")
+      .get(`${import.meta.env.VITE_BASE_URL}pickups/amenity/all/`)
       .then((resp) => {
+        console.log('collector',resp.data)
         setamen(resp.data);
       })
       .catch((err) => {
-        console.log("Bye");
+        console.log(err);
       });
   };
 
@@ -68,13 +70,14 @@ function LeafletFunc() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
        
-         {data?.map((marker, index) => (
+         {data.length && data?.map((marker, index) => (
           <Marker
             key={index}
             position={[marker.lat, marker.long]}
             icon={customIcon}
           >
-            <Popup>{marker.productname}</Popup>
+         
+            <Popup>PickupRequest{` ${index}`}</Popup>
           </Marker>
         ))}
        
