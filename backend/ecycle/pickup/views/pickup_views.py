@@ -25,7 +25,6 @@ class CreatePickupView(APIView):
             if not request.data.get("products",""):
                 return Response({"message":"Products field is required","type":"error"},400)
             serialized_data=PickupSerializer(data=request.data)
-
             if serialized_data.is_valid(raise_exception=True):
                 pickup=serialized_data.save()
             serialized_data=ProductSerializer(data=request.data["products"],many=True)
