@@ -6,11 +6,20 @@ import 'package:recyclo/theme/textstyle.dart';
 class Themes {
   static ThemeData light(BuildContext context) {
     return ThemeData.light().copyWith(
-      useMaterial3: true,
       iconTheme: const IconThemeData(color: Colors.black),
       primaryColor: ColorConstants.kPrimaryColor,
       colorScheme: ColorScheme.fromSeed(
           seedColor: ColorConstants.kPrimaryColor.withOpacity(0.5)),
+      navigationBarTheme: NavigationBarThemeData(labelTextStyle:
+          MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return GoogleFonts.urbanist(
+              fontSize: 15, fontWeight: FontWeight.w600);
+        } else {
+          return GoogleFonts.urbanist(
+              fontSize: 13, fontWeight: FontWeight.w500);
+        }
+      })),
       bottomSheetTheme: const BottomSheetThemeData(
         backgroundColor: Colors.white,
       ),

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:recyclo/views/add_product_screen.dart';
-import 'package:recyclo/views/landing_screen.dart';
 import 'package:recyclo/views/login_screen.dart';
 import 'package:recyclo/views/mainscreen.dart';
 import 'package:recyclo/views/signup_screen.dart';
@@ -23,11 +22,7 @@ class AppRoutes {
       page: () => const SplashScreen(),
       binding: SplashBinding(),
     ),
-    GetPage(
-      name: landingscreen,
-      page: () => const LandingScreen(),
-      binding: LandingScreenBinding(),
-    ),
+
     GetPage(
       name: loginscreen,
       page: () => const LoginScreen(),

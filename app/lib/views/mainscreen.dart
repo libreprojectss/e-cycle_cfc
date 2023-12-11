@@ -32,9 +32,9 @@ class _MainScreenState extends State<MainScreen> {
                 label: 'Home',
               ),
               NavigationDestination(
-                selectedIcon: Icon(UniconsLine.map_marker_shield),
-                icon: Icon(UniconsLine.map_marker_shield),
-                label: 'Maps',
+                selectedIcon: Icon(UniconsLine.image),
+                icon: Icon(UniconsLine.image),
+                label: 'Object Detection',
               ),
               NavigationDestination(
                 selectedIcon: Icon(UniconsLine.history),
