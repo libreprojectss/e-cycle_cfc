@@ -30,7 +30,7 @@ DEBUG = True
 AUTH_USER_MODEL='account.User'  
 
 ALLOWED_HOSTS = ['*']
-
+BACKEND_URL=os.getenv("BACKEND_URL")
 
 # Application definition
 

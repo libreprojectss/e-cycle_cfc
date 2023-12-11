@@ -2,6 +2,8 @@ from PIL import Image
 from ultralytics import YOLO
 # from image_processor.handler.save_result import save_image
 import threading
+from django.conf import settings
+
 
 import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +20,7 @@ def save_image(results):
 
 def detect_object(image_url):
     # Load a pretrained YOLOv8n model
-    image_link='http://localhost:8000'+image_url
+    image_link=settings.BACKEND_URL+image_url
     model = YOLO(model_path)
 
     # Define path to the image file

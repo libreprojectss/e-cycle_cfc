@@ -15,7 +15,6 @@ class Images(APIView):
         if serializer.is_valid(raise_exception=True):
             imageObj=serializer.save()
             classifiedResult=detect_object(imageObj.image.url)
-
             return Response({"message":"success","result":list(classifiedResult)})
         else:
             return Response({"message":"error"},status=status.HTTP_400_BAD_REQUEST)
