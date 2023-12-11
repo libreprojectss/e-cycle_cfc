@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'corsheaders',
     ##defined apps
     'account',
-    'pickup'
+    'pickup',
+    'images_processor'
    
 ]
 

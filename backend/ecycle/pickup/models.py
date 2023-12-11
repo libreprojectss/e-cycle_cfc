@@ -1,9 +1,12 @@
 from django.db import models
 from account.models import User
+
 def product_image_upload_to(instance, filename):
+    print(instance)
     id_var= instance.id
     # Append the filename to the product id and return the complete path
-    return f"{id_var}/product_image/{filename}"
+    return f"/media/{id_var}/product_image/{filename}"
+
 class pickups(models.Model):
     lat=models.FloatField() # For lattitude
     long=models.FloatField() # For longitude
